@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+
+const Color green = Color(0xFF13C45E);
+const Color blue = Color(0xFF2949FA);
+const Color red = Color(0xFFF90000);
+
+/*
+--------------------------------------------------------------------------------
+                                Dark Mode
+--------------------------------------------------------------------------------
+*/
+const Color black1 = Color(0xFF121212); // Trip info card, Select trip level,
+const Color black = Color(
+    0xFF0B0B0C); //background color of the phone number and OTP text field, arrows and search text field  background color,
+const Color lightBlack = Color(
+    0xFF252328); //Selection field, settings button, شروط والأحكام سياسة الخصوصية,
+const Color lightWhite1 =
+    Color(0xFFE1E1E1); //Phone number text field input and ordinary text
+
+/*
+--------------------------------------------------------------------------------
+                                Light Mode
+--------------------------------------------------------------------------------
+*/
+const Color lightGrey =
+    Color(0xFFE4E4E7); //trip info card, location trip, map places, copon,
+const Color white = Color(
+    0xFFFFFFFF); //background color of the phone number and OTP and selection text field, Selection field, settings button, شروط والأحكام سياسة الخصوصية, arrows and search text field  background color,
+
+/*
+--------------------------------------------------------------------------------
+                                Common
+--------------------------------------------------------------------------------
+*/
+const Color lightWhite = Color(
+    0xFFF5F2FB); // text field input in DARK MODE,text field border in LIGHT MODE,
+const Color grey1 = Color(
+    0xFF1E1E1E); //background color of text field, location trip, map places, copon in DARK MODE, text field input and ordinary text in LIGHT MODE,
