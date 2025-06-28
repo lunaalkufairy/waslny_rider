@@ -15,7 +15,7 @@ const Color black = Color(
 const Color lightBlack = Color(
     0xFF252328); //Selection field, settings button, شروط والأحكام سياسة الخصوصية,
 
-const Color grey = Color(0xFF413D48); //text field border color.
+const Color grey = Color(0xFF413D48); //otp text field border color.
 
 /*
 --------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ const Color white = Color(
 --------------------------------------------------------------------------------
 */
 const Color lightWhite = Color(
-    0xFFF5F2FB); // text field input in DARK MODE,text field border in LIGHT MODE,
+    0xFFF5F2FB); // text field input and border in DARK MODE,text field border in LIGHT MODE,
 const Color grey1 = Color(
     0xFF1E1E1E); //background color of text field, location trip, map places, copon , download button in DARK MODE, text field input and ordinary text in LIGHT MODE,
 const Color lightWhite1 = Color(
