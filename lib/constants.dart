@@ -11,9 +11,9 @@ const Color red = Color(0xFFF90000);
 */
 const Color black1 = Color(0xFF121212); // Trip info card, Select trip level,
 const Color black = Color(
-    0xFF0B0B0C); //background color of the phone number and OTP text field, arrows and search text field  background color,
+    0xFF0B0B0C); //background color of the phone number and OTP text field, search text field  background color,
 const Color lightBlack = Color(
-    0xFF252328); //Selection field, settings button, شروط والأحكام سياسة الخصوصية,
+    0xFF252328); //Selection field, settings button, شروط والأحكام سياسة الخصوصية,arrow button
 
 const Color grey = Color(0xFF413D48); //otp text field border color.
 
