@@ -64,7 +64,7 @@ class MultieTripLocationCard extends StatelessWidget {
                 ),
                 index == addresses.length - 1
                     ? SizedBox(
-                        height: 10,
+                        height: 0,
                       )
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.end,
