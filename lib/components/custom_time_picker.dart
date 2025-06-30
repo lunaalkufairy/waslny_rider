@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/tools/clock_view.dart';
 
 class CustomTimePicker extends StatefulWidget {
   const CustomTimePicker({super.key});
@@ -10,60 +11,102 @@ class CustomTimePicker extends StatefulWidget {
 }
 
 class _CustomTimePickerState extends State<CustomTimePicker> {
-  TimeOfDay timeOfDay = TimeOfDay(hour: 11, minute: 28);
-  void _showTimePicker() {
-    showTimePicker(
+  TimeOfDay timeOfDay = TimeOfDay.now();
+  void _customShowTimePicker() {
+    showDialog(
       context: context,
-      cancelText: 'إلغاء',
-      confirmText: 'متابعة',
-      helpText: 'تحديد الوقت',
-      builder: (BuildContext context, Widget? child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            timePickerTheme: TimePickerThemeData(
-              backgroundColor: black1,
-              cancelButtonStyle: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: lightWhite1),
-                  borderRadius: BorderRadiusGeometry.circular(20),
-                ),
-                backgroundColor: white,
-                textStyle: TextStyle(
-                  fontFamily: 'assets/fonts/Cairo-Bold.ttf',
-                  fontSize: 20,
-                  color: grey1,
-                ),
-              ),
-              confirmButtonStyle: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: blue),
-                  borderRadius: BorderRadiusGeometry.circular(20),
-                ),
-                backgroundColor: blue,
-                textStyle: TextStyle(
-                  fontFamily: 'assets/fonts/Cairo-Bold.ttf',
-                  fontSize: 20,
-                  color: grey1,
-                ),
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: black1,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: SizedBox(
+              width: double.maxFinite,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'تحديد الوقت',
+                    style: TextStyle(
+                      color: white,
+                      fontSize: 18,
+                      fontFamily: 'Cairo',
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    timeOfDay.format(context).toString(),
+                    style: TextStyle(
+                      fontFamily: 'Cairo',
+                      fontSize: 20,
+                      color: grey2,
+                    ),
+                  ),
+                  //--------- Custom Clock ----------
+                  ClockView(),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(horizontal: 50),
+                            backgroundColor: white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadiusGeometry.circular(15),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            'إلغاء',
+                            style: TextStyle(
+                              fontFamily: 'Cairo',
+                              fontSize: 15,
+                              color: black1,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(horizontal: 50),
+                            backgroundColor: blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadiusGeometry.circular(15),
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              timeOfDay = TimeOfDay
+                                  .now(); // أو القيمة اللي بتختاريها من التصميم لاحقًا
+                            });
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            'متابعة',
+                            style: TextStyle(
+                              fontFamily: 'Cairo',
+                              fontSize: 15,
+                              color: white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          child: Directionality(
-            textDirection: TextDirection.rtl,
-            child: child!,
-          ),
-        );
-      },
-      initialEntryMode: TimePickerEntryMode.dialOnly,
-      initialTime: TimeOfDay.now(),
-    ).then(
-      (value) {
-        setState(
-          () {
-            timeOfDay = value!;
-          },
         );
       },
     );
@@ -72,7 +115,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: _showTimePicker,
+      onPressed: _customShowTimePicker,
       style: TextButton.styleFrom(
         backgroundColor: black1,
         shape: RoundedRectangleBorder(
