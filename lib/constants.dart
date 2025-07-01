@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 const Color green = Color(0xFF13C45E);
 const Color blue = Color(0xFF2949FA);
 const Color red = Color(0xFFF90000);
+const Color yellow = Color(0xFFFDF239);
+const Color grey3 = Color(0xFFF4F4F4);
 
 /*
 --------------------------------------------------------------------------------
