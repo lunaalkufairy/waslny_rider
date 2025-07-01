@@ -1,17 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/time_picker_controller.dart';
 
 int? selectedHourValue;
 
-class ClockView extends StatefulWidget {
-  const ClockView({super.key});
+class ClockView extends StatelessWidget {
+  ClockView({super.key});
+  final controller = Get.find<TimePickerController>();
 
-  @override
-  State<ClockView> createState() => _ClockViewState();
-}
-
-class _ClockViewState extends State<ClockView> {
   int selectedHour = DateTime.now().hour;
   @override
   Widget build(BuildContext context) {
@@ -22,36 +22,50 @@ class _ClockViewState extends State<ClockView> {
         onTapUp: (details) {
           RenderBox box = context.findRenderObject() as RenderBox;
           Offset local = box.globalToLocal(details.globalPosition);
-          _handleTap(local);
+          _handleTap(local, controller);
         },
-        child: CustomPaint(
-          painter: ClockPainter(selectedHour),
-        ),
+        child: Obx(() {
+          return CustomPaint(
+            painter: ClockPainter(
+              isSelectingHour: controller.isSelectingHour.value,
+              selectedValue: controller.isSelectingHour.value
+                  ? controller.selectedHour.value
+                  : controller.selectedMinute.value,
+            ),
+          );
+        }),
       ),
     );
   }
 
-  void _handleTap(Offset position) {
+  void _handleTap(Offset position, TimePickerController controller) {
     double centerX = 125;
     double centerY = 125;
     double dx = position.dx - centerX;
     double dy = position.dy - centerY;
     double angle = atan2(dy, dx);
     double degrees = (angle * 180 / pi + 90) % 360;
-    int tappedHour = ((degrees / 30).round()) % 12;
+    int tapped = ((degrees / 30).round()) % 12;
+    tapped = tapped == 0 ? 12 : tapped;
 
-    setState(() {
-      selectedHour = tappedHour == 0 ? 12 : tappedHour;
-      selectedHourValue = selectedHour;
-    });
+    if (controller.isSelectingHour.value) {
+      int tappedHour = ((degrees / 30).round()) % 12;
+      tappedHour = tappedHour == 0 ? 12 : tappedHour;
+      controller.selectHour(tappedHour);
+    } else {
+      int tappedMinute = ((degrees / 6).round()) % 60;
+      controller.selectMinute(tappedMinute);
+    }
+
     //print('houuuuuuuur + $selectedHourValue');
   }
 }
 
 class ClockPainter extends CustomPainter {
-  final int selectedHour;
+  final int selectedValue;
+  final bool isSelectingHour;
   var dateTime = DateTime.now();
-  ClockPainter(this.selectedHour);
+  ClockPainter({required this.selectedValue, required this.isSelectingHour});
 
   // 60 sec - 360 deg  , 1 sec - 6 deg
   //12 hours - 360deg , 1 hour - 30 deg , 1 min - 0.5 deg
@@ -65,27 +79,24 @@ class ClockPainter extends CustomPainter {
 
     var fillBrush = Paint()..color = white;
     var centerFillBrush = Paint()..color = blue;
-    // var minHandBrush = Paint()
-    //   ..color = blue
-    //   ..strokeWidth = 2
-    //   ..strokeCap = StrokeCap.round;
-    var hourHandBrush = Paint()
+    var handBrush = Paint()
       ..color = blue
       ..strokeWidth = 2
       ..strokeCap = StrokeCap.round;
     //Background :
     canvas.drawCircle(center, radius - 20, fillBrush);
-
+    int divisions = isSelectingHour ? 12 : 60; // ستستخدم نفس الدائرة
     //Clock hands :
     // var minHandX = centerX + 60 * cos(dateTime.minute * 6 * pi / 180 - 90);
     // var minHandY = centerX + 60 * sin(dateTime.minute * 6 * pi / 180 - 90);
     // canvas.drawLine(center, Offset(minHandX, minHandY), minHandBrush);
-    var hourHandX = centerX + 85 * cos((selectedHour * 30 - 90) * pi / 180);
-    var hourHandY = centerX + 85 * sin((selectedHour * 30 - 90) * pi / 180);
-    canvas.drawLine(center, Offset(hourHandX, hourHandY), hourHandBrush);
+    final angle = ((selectedValue * (360 / divisions) - 90) * pi / 180);
+    var hourHandX = centerX + 85 * cos(angle);
+    var hourHandY = centerX + 85 * sin(angle);
+    canvas.drawLine(center, Offset(hourHandX, hourHandY), handBrush);
     canvas.drawCircle(Offset(hourHandX, hourHandY), 18, centerFillBrush);
     //Numbers :
-    for (int i = 1; i <= 12; i++) {
+    for (int i = 1; i <= divisions; i++) {
       final angle = (i * 30 - 90) * pi / 180; // نخصم 90 درجة لنبدأ من الأعلى
       final radiusOffset = 40; // حتى يكون الرقم داخل الساعة شوي
       final x = centerX + (radius - radiusOffset) * cos(angle);
@@ -93,12 +104,11 @@ class ClockPainter extends CustomPainter {
 
       final textPainter = TextPainter(
         text: TextSpan(
-          text: '$i',
+          text: '${isSelectingHour ? i : i * 5 % 60}',
           style: TextStyle(
-            color: black,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+              color: black,
+              fontSize: isSelectingHour ? 18 : 12,
+              fontWeight: FontWeight.bold),
         ),
         textDirection: TextDirection.ltr,
         textAlign: TextAlign.center,
