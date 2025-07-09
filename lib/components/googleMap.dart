@@ -27,13 +27,19 @@ class MapComponent extends StatelessWidget {
           target: controller.currentLocation.value!,
           zoom: 17,
         ),
-        myLocationEnabled: true,
+        myLocationEnabled: false,
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
         zoomGesturesEnabled: isZoomAble,
         scrollGesturesEnabled: ismoveAble,
         rotateGesturesEnabled: false,
         compassEnabled: false,
+        markers: {
+          Marker(
+              markerId: MarkerId("hi"),
+              position: controller.currentLocation.value!,
+              icon: controller.customIcon)
+        },
       );
     });
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -5,6 +6,16 @@ import 'package:geolocator/geolocator.dart';
 class Googlemapcontroller extends GetxController {
   GoogleMapController? mapController;
   Rxn<LatLng> currentLocation = Rxn<LatLng>();
+  BitmapDescriptor customIcon = BitmapDescriptor.defaultMarker;
+
+  void customMarker() {
+    BitmapDescriptor.asset(ImageConfiguration(size: Size(100, 100)),
+            "assets/icons/CurrentLocationMarker.png")
+        .then((icon) {
+      customIcon = icon;
+      update();
+    });
+  }
 
   final String mapStyle = '''[
     {
@@ -120,6 +131,7 @@ class Googlemapcontroller extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    customMarker();
     getCurrentLocation();
   }
 
