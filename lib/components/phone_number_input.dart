@@ -15,7 +15,7 @@ class PhoneNumberInput extends StatelessWidget {
         cursorHeight: 30,
         cursorColor: blue,
         decoration: InputDecoration(
-          hintText: "9**********",
+          hintText: "09*********",
           hintStyle: TextStyle(color: white),
           filled: true,
           fillColor: black,
