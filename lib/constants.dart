@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 const Color green = Color(0xFF13C45E);
 const Color blue = Color(0xFF2949FA);
 const Color red = Color(0xFFF90000);
+const Color yellow = Color(0xFFFDF239);
+const Color grey3 = Color(0xFFF4F4F4);
 
 /*
 --------------------------------------------------------------------------------
@@ -38,3 +40,5 @@ const Color grey1 = Color(
     0xFF1E1E1E); //background color of text field, location trip, map places, copon , download button in DARK MODE, text field input and ordinary text in LIGHT MODE,
 const Color lightWhite1 = Color(
     0xFFE1E1E1); //Phone number text field input and ordinary text in DARK MODE, trip info card, location trip, map places, copon, download button in LIGHT MODE
+const Color grey2 = Color(0xFF9F9F9F);
+const Color white1 = Color(0xFFF8FAFC);
