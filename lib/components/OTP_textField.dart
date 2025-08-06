@@ -19,12 +19,12 @@ final focusedPinTheme = PinTheme(
   width: 52,
   height: 52,
   decoration: BoxDecoration(
-    color: white,
-    border: Border.all(width: 1, color: lightWhite1),
+    color: blue,
+    border: Border.all(width: 1, color: blue),
     borderRadius: BorderRadius.circular(16),
   ),
   textStyle: TextStyle(
-    color: black,
+    color: white1,
     fontFamily: 'assets/fonts/Cairo-Bold.ttf',
     fontSize: 20,
   ),
@@ -34,12 +34,12 @@ final submittedPinTheme = PinTheme(
   width: 52,
   height: 52,
   decoration: BoxDecoration(
-    color: white,
-    border: Border.all(width: 1, color: lightWhite1),
+    color: blue,
+    border: Border.all(width: 1, color: blue),
     borderRadius: BorderRadius.circular(16),
   ),
   textStyle: TextStyle(
-    color: black,
+    color: white,
     fontFamily: 'assets/fonts/Cairo-Bold.ttf',
     fontSize: 20,
   ),
