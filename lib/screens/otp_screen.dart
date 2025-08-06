@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:get/route_manager.dart';
 import 'package:waslny_rider/components/OTP_textField.dart';
 import 'package:waslny_rider/components/custom_Button.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/screens/add_information_screen.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -58,7 +60,9 @@ class OtpScreen extends StatelessWidget {
                 height: 40,
               ),
               CustomButton(
-                onTap: () {},
+                onTap: () {
+                  Get.to(AddInformationScreen());
+                },
                 text: "تأكيد",
                 isEnabled: true,
               )
