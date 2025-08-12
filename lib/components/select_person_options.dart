@@ -52,7 +52,7 @@ class _SelectPersonalOptionsState extends State<SelectPersonalOptions> {
                 borderRadius: BorderRadius.circular(23),
               ),
               width: 360,
-              height: 55,
+              height: 50,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -72,21 +72,6 @@ class _SelectPersonalOptionsState extends State<SelectPersonalOptions> {
             ),
           );
         }),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: _printSelectedOptions,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: blue,
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-          ),
-          child: const Text(
-            'عرض الخيارات المختارة',
-            style: TextStyle(fontFamily: 'cairo'),
-          ),
-        ),
       ],
     );
   }

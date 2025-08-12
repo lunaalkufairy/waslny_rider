@@ -45,7 +45,7 @@ class CustomDatePicker extends StatelessWidget {
                     textAlign: TextAlign.right,
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
-                      fontFamily: 'assets/fonts/Cairo-Bold.ttf',
+                      fontFamily: 'cairo',
                       color: white,
                     ),
                   ),

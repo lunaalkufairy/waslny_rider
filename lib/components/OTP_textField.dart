@@ -10,10 +10,7 @@ final defaultPinTheme = PinTheme(
     border: Border.all(width: 1, color: grey),
     borderRadius: BorderRadius.circular(16),
   ),
-  textStyle: TextStyle(
-      color: lightWhite1,
-      fontFamily: 'assets/fonts/Cairo-Bold.ttf',
-      fontSize: 20),
+  textStyle: TextStyle(color: lightWhite1, fontFamily: 'cairo', fontSize: 20),
 );
 final focusedPinTheme = PinTheme(
   width: 52,
@@ -25,7 +22,7 @@ final focusedPinTheme = PinTheme(
   ),
   textStyle: TextStyle(
     color: white1,
-    fontFamily: 'assets/fonts/Cairo-Bold.ttf',
+    fontFamily: 'cairo',
     fontSize: 20,
   ),
 );
@@ -40,7 +37,7 @@ final submittedPinTheme = PinTheme(
   ),
   textStyle: TextStyle(
     color: white,
-    fontFamily: 'assets/fonts/Cairo-Bold.ttf',
+    fontFamily: 'cairo',
     fontSize: 20,
   ),
 );
@@ -55,7 +52,7 @@ final errorPinTheme = PinTheme(
   ),
   textStyle: TextStyle(
     color: red,
-    fontFamily: 'assets/fonts/Cairo-Bold.ttf',
+    fontFamily: 'cairo',
     fontSize: 20,
   ),
 );
