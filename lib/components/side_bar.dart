@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/screens/setting_screen.dart';
+import 'package:waslny_rider/screens/view_iformation_screen.dart';
+import 'package:waslny_rider/screens/wallet_screen.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({super.key});
@@ -32,7 +35,9 @@ class SideBar extends StatelessWidget {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(ViewIformationScreen());
+              },
             ),
             ListTile(
               title: Row(
@@ -52,7 +57,9 @@ class SideBar extends StatelessWidget {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(WalletScreen());
+              },
             ),
             ListTile(
               title: Row(
@@ -119,7 +126,7 @@ class SideBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    "اللإعدادات",
+                    "الإعدادات",
                     style: TextStyle(
                         color: white, fontSize: 20, fontFamily: 'cairo'),
                   ),
@@ -132,7 +139,9 @@ class SideBar extends StatelessWidget {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(SettingScreen());
+              },
             ),
           ],
         ),

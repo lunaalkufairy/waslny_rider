@@ -12,8 +12,8 @@ class MoneyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 226,
-      width: 400,
+      height: 220,
+      width: 350,
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(

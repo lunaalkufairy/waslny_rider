@@ -11,6 +11,7 @@ import 'package:waslny_rider/components/side_bar_button.dart';
 import 'package:waslny_rider/constants.dart';
 import 'package:waslny_rider/controllers/home_screen_controller.dart';
 import 'package:waslny_rider/screens/login_screen.dart';
+import 'package:waslny_rider/screens/wallet_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,9 +22,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       key: controller.scaffoldKey,
       endDrawer: Drawer(
-        // child: ListView(
-
-        // ),
         child: SideBar(),
       ),
       backgroundColor: black,
@@ -45,7 +43,9 @@ class HomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment(-0.85, -0.88),
             child: MyWalletButton(
-              onTap: () {},
+              onTap: () {
+                Get.to(WalletScreen());
+              },
             ),
           ),
           Align(

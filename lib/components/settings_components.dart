@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/instance_manager.dart';
+import 'package:get/route_manager.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/screens/shorot_ahkam_screen.dart';
 
 class SettingsComponents extends StatelessWidget {
   const SettingsComponents({super.key});
@@ -26,7 +29,16 @@ class SettingsComponents extends StatelessWidget {
           ][index];
 
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              if (index == 0) {}
+              if (index == 1) {
+                Get.to(ShorotAhkamScreen());
+              }
+              if (index == 2) {
+                // Get.to();
+              }
+              if (index == 3) {}
+            },
             child: Container(
               margin: index == 1
                   ? const EdgeInsets.only(top: 6, bottom: 0)
@@ -78,7 +90,7 @@ class SettingsComponents extends StatelessWidget {
                         width: 35,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: white,
+                          color: black,
                         ),
                         alignment: Alignment.center,
                         child: SvgPicture.asset(
@@ -86,7 +98,7 @@ class SettingsComponents extends StatelessWidget {
                           color:
                               iconPath == 'assets/icons/Property 1=Delete.svg'
                                   ? red
-                                  : black,
+                                  : white,
                           height: 20,
                         ),
                       ),
