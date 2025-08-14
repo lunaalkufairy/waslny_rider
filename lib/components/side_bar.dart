@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/screens/my_orders_screen.dart';
 import 'package:waslny_rider/screens/setting_screen.dart';
 import 'package:waslny_rider/screens/view_iformation_screen.dart';
 import 'package:waslny_rider/screens/wallet_screen.dart';
@@ -12,7 +13,7 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: black,
+      color: black1,
       child: SafeArea(
         child: Column(
           children: [
@@ -79,7 +80,9 @@ class SideBar extends StatelessWidget {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.to(MyOrdersScreen());
+              },
             ),
             ListTile(
               title: Row(

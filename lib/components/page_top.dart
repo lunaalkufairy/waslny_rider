@@ -24,9 +24,12 @@ class PageTop extends StatelessWidget {
           SizedBox(
             width: width,
           ),
-          CustomArrow(onPressed: () {
-            Get.back();
-          }),
+          CustomArrow(
+              backgroundColor: lightBlack,
+              arrowColor: white,
+              onPressed: () {
+                Get.back();
+              }),
           SizedBox(
             width: 10,
           ),

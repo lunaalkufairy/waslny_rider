@@ -3,7 +3,14 @@ import 'package:waslny_rider/constants.dart';
 
 class CustomArrow extends StatelessWidget {
   final VoidCallback onPressed;
-  const CustomArrow({super.key, required this.onPressed});
+  Color backgroundColor;
+  Color arrowColor;
+  CustomArrow({
+    super.key,
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.arrowColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +19,12 @@ class CustomArrow extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
         padding: const EdgeInsets.all(12),
-        backgroundColor: lightBlack,
+        backgroundColor: backgroundColor,
         elevation: 10,
       ),
-      child: const Icon(
+      child: Icon(
         Icons.arrow_forward_ios_rounded,
-        color: Colors.white,
+        color: arrowColor,
         size: 20,
       ),
     );
