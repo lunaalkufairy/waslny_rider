@@ -20,7 +20,7 @@ class MyLocationsScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              PageTop(pageName: 'عناويني', width: 90),
+              PageTop(pageName: 'عناويني', width: 75),
               SizedBox(
                 height: 30,
               ),
@@ -33,7 +33,7 @@ class MyLocationsScreen extends StatelessWidget {
                     backgroundColor: lightBlack,
                     addColor: white),
               ),
-              controller.locations == null
+              controller.locations!.length == 0
                   ? Center(
                       child: Column(
                         children: [

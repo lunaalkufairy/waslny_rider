@@ -32,7 +32,7 @@ class MyLocationInfoCard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 75,
+            width: 70,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -45,14 +45,21 @@ class MyLocationInfoCard extends StatelessWidget {
               Text(
                 fullLocation,
                 style:
-                    TextStyle(color: white, fontSize: 18, fontFamily: 'cairo'),
+                    TextStyle(color: white, fontSize: 15, fontFamily: 'cairo'),
               ),
             ],
           ),
-          SvgPicture.asset(
-            "assets/icons/Frame 11365.svg",
-            height: 70,
+          SizedBox(
+            width: 20,
           ),
+          Container(
+            height: 50,
+            width: 70,
+            child: SvgPicture.asset(
+              "assets/icons/Frame 11365.svg",
+              height: 20,
+            ),
+          )
         ],
       ),
     );

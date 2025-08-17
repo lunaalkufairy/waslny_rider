@@ -20,7 +20,7 @@ class MyOrdersScreen extends StatelessWidget {
       body: Column(
         children: [
           PageTop(pageName: "طلباتي", width: 80),
-          controller.orders == null
+          controller.orders!.length == 0
               ? Center(
                   child: Column(
                     children: [
