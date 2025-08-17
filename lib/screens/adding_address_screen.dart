@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waslny_rider/components/custom_Button.dart';
 import 'package:waslny_rider/components/custom_input_field.dart';
 import 'package:waslny_rider/components/custom_onMap_button.dart';
 import 'package:waslny_rider/components/page_top.dart';
@@ -44,12 +45,16 @@ class AddingAddressScreen extends StatelessWidget {
                     width: 20,
                   ),
                   Container(
-                    width: 300,
+                    width: 280,
                     height: 60,
                     child: CustomInputField(hintText: 'أدخل العنوان'),
                   ),
                 ],
               ),
+              SizedBox(
+                height: 520,
+              ),
+              CustomButton(onTap: () {}, text: 'حفظ')
             ],
           ),
         ),
