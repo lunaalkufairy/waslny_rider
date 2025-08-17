@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:waslny_rider/components/custom_input_field.dart';
+import 'package:waslny_rider/components/custom_onMap_button.dart';
 import 'package:waslny_rider/components/page_top.dart';
 import 'package:waslny_rider/constants.dart';
 
@@ -20,13 +22,33 @@ class AddingAddressScreen extends StatelessWidget {
               Align(
                 alignment: Alignment(0.88, 0),
                 child: Text(
-                  'العنوان',
+                  'العنوان ',
                   style: TextStyle(
                     color: white,
                     fontSize: 18,
                     fontFamily: 'cairo',
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  CustomOnmapButton(),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    width: 300,
+                    height: 60,
+                    child: CustomInputField(hintText: 'أدخل العنوان'),
+                  ),
+                ],
               ),
             ],
           ),
