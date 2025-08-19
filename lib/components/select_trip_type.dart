@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/instance_manager.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/add_trip_controller.dart';
 
 class SelectTripType extends StatefulWidget {
   const SelectTripType({super.key});
@@ -20,6 +22,7 @@ class _SelectTripTypeState extends State<SelectTripType> {
 
   @override
   Widget build(BuildContext context) {
+    AddTripController controller = Get.put(AddTripController());
     return Center(
       child: Wrap(
         spacing: 12,
@@ -30,6 +33,7 @@ class _SelectTripTypeState extends State<SelectTripType> {
             onTap: () {
               setState(() {
                 selectedIndex = index;
+                controller.selectedtripTypeIndex = index;
                 print(options[index]["title"]);
               });
             },

@@ -7,6 +7,7 @@ import 'package:waslny_rider/components/my_orders_trip_info_card.dart';
 import 'package:waslny_rider/components/page_top.dart';
 import 'package:waslny_rider/constants.dart';
 import 'package:waslny_rider/controllers/my_orders_screen_controller.dart';
+import 'package:waslny_rider/screens/order_information_screen.dart';
 // import 'package:waslny_rider/screens/order_information_screen.dart';
 
 class MyOrdersScreen extends StatelessWidget {
@@ -50,7 +51,7 @@ class MyOrdersScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          // Get.to(OrderInformationScreen());
+                          Get.to(OrderInformationScreen());
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

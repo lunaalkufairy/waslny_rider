@@ -4,13 +4,13 @@ import 'package:get/route_manager.dart';
 import 'package:waslny_rider/components/Animate_Add_Order_Button.dart';
 import 'package:waslny_rider/components/customaiz_trip_buttom_sheet.dart';
 import 'package:waslny_rider/components/customaize_trip_button.dart';
+import 'package:waslny_rider/components/duration_trip_type_buttom_sheet.dart';
 import 'package:waslny_rider/components/googleMap.dart';
 import 'package:waslny_rider/components/my_wallet_button.dart';
 import 'package:waslny_rider/components/side_bar.dart';
 import 'package:waslny_rider/components/side_bar_button.dart';
 import 'package:waslny_rider/constants.dart';
 import 'package:waslny_rider/controllers/home_screen_controller.dart';
-import 'package:waslny_rider/screens/login_screen.dart';
 import 'package:waslny_rider/screens/wallet_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -30,7 +30,12 @@ class HomeScreen extends StatelessWidget {
           MapComponent(isZoomAble: false, ismoveAble: false),
           Align(
             alignment: Alignment.bottomCenter,
-            child: AnimateAddOrderButton(),
+            child: GestureDetector(
+              child: AnimateAddOrderButton(),
+              onTap: () {
+                Get.bottomSheet(DurationTripTypeButtomSheet());
+              },
+            ),
           ),
           Align(
             alignment: Alignment(0.88, -0.85),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/instance_manager.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/add_trip_controller.dart';
 
 class SelectDurationTripType extends StatefulWidget {
   const SelectDurationTripType({super.key});
@@ -19,6 +21,7 @@ class _SelectDurationTripTypeState extends State<SelectDurationTripType> {
 
   @override
   Widget build(BuildContext context) {
+    AddTripController controller = Get.find();
     return Center(
       child: Wrap(
         spacing: 12,
@@ -28,13 +31,15 @@ class _SelectDurationTripTypeState extends State<SelectDurationTripType> {
           return GestureDetector(
             onTap: () {
               setState(() {
+                controller.selectedIndex = index;
                 selectedIndex = index;
+
                 print(options[index]["title"]);
               });
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width: 160,
+              width: 173,
               height: 120,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(

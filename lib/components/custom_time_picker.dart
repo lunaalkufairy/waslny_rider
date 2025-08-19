@@ -110,19 +110,19 @@ class CustomTimePicker extends StatelessWidget {
                           )),
                       const SizedBox(height: 20),
                       Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(horizontal: 50),
-                                backgroundColor: white,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadiusGeometry.circular(15),
-                                ),
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          GestureDetector(
+                            onTap: () => Get.back(),
+                            child: Container(
+                              width: 110,
+                              height: 45,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(15),
                               ),
-                              onPressed: () => Get.back(),
+                              alignment: Alignment.center,
                               child: Text(
                                 'إلغاء',
                                 style: TextStyle(
@@ -132,27 +132,26 @@ class CustomTimePicker extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(horizontal: 50),
-                                backgroundColor: blue,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadiusGeometry.circular(15),
+                          ),
+                          SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: () {
+                              if (controller.isSelectingHour.value) {
+                                controller.isSelectingHour.value = false;
+                              } else {
+                                Get.back();
+                              }
+                            },
+                            child: Obx(
+                              () => Container(
+                                width: 110,
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  color: blue,
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                              ),
-                              onPressed: () {
-                                if (controller.isSelectingHour.value) {
-                                  controller.isSelectingHour.value = false;
-                                } else {
-                                  Get.back();
-                                }
-                              },
-                              child: Obx(
-                                () => Text(
+                                alignment: Alignment.center,
+                                child: Text(
                                   controller.isSelectingHour.value
                                       ? 'التالي'
                                       : 'تم',
@@ -164,9 +163,9 @@ class CustomTimePicker extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
+                        ],
+                      )),
                     ],
                   ),
                 ),
