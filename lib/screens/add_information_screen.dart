@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:waslny_rider/components/custom_Button.dart';
 import 'package:waslny_rider/components/custom_textField.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/add_information_Screen_controller.dart';
+import 'package:waslny_rider/controllers/get_user_information_screen_controller.dart';
 import 'package:waslny_rider/screens/home_screen.dart';
 
 class AddInformationScreen extends StatelessWidget {
@@ -10,6 +13,14 @@ class AddInformationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AddInformationScreenController controller =
+        Get.put(AddInformationScreenController());
+    GetUserInfoScreenController userInfoScreenController =
+        Get.put(GetUserInfoScreenController());
+    TextEditingController firstNameController = TextEditingController();
+    TextEditingController secondNameController = TextEditingController();
+    TextEditingController locationController = TextEditingController();
+
     return Scaffold(
       backgroundColor: black,
       body: SingleChildScrollView(
@@ -31,6 +42,7 @@ class AddInformationScreen extends StatelessWidget {
                 CustomTextfield(
                   textFieldName: "الاسم",
                   hintText: 'الاسم',
+                  controller: firstNameController,
                 ),
                 SizedBox(
                   height: 25,
@@ -38,6 +50,7 @@ class AddInformationScreen extends StatelessWidget {
                 CustomTextfield(
                   textFieldName: "الكنية",
                   hintText: 'الكنية',
+                  controller: secondNameController,
                 ),
                 SizedBox(
                   height: 25,
@@ -45,6 +58,7 @@ class AddInformationScreen extends StatelessWidget {
                 CustomTextfield(
                   textFieldName: "(اختياري) العنوان",
                   hintText: 'العنوان',
+                  controller: locationController,
                 ),
                 const SizedBox(
                   height: 50,
@@ -52,7 +66,13 @@ class AddInformationScreen extends StatelessWidget {
                 CustomButton(
                   text: 'تأكيد',
                   onTap: () {
-                    Get.to(HomeScreen());
+                    controller.firstName = firstNameController.text;
+                    controller.secondName = secondNameController.text;
+                    controller.location = locationController.text;
+                    print(controller.firstName);
+                    print(controller.secondName);
+                    print(controller.location);
+                    controller.checkValues();
                   },
                 ),
               ],

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/login_screen_controller.dart';
 
 class PhoneNumberInput extends StatelessWidget {
   const PhoneNumberInput({super.key});
 
   @override
   Widget build(BuildContext context) {
+    LoginScreenController controller = Get.find();
     return Padding(
       padding: const EdgeInsets.all(13.0),
       child: IntlPhoneField(
@@ -36,7 +40,12 @@ class PhoneNumberInput extends StatelessWidget {
         dropdownTextStyle: TextStyle(color: white),
         style: TextStyle(color: white),
         onChanged: (phone) {
-          print(phone.completeNumber);
+          controller.phoneNumber =
+              phone.completeNumber.toString().substring(1, 4) +
+                  phone.completeNumber.toString().substring(5);
+
+          print(phone.completeNumber.toString().substring(1, 4) +
+              phone.completeNumber.toString().substring(5));
         },
         dropdownIconPosition: IconPosition.trailing,
         dropdownIcon: const Icon(

@@ -14,7 +14,7 @@ class ShorotAhkamScreen extends StatelessWidget {
         children: [
           PageTop(
             pageName: "الشروط والأحكام",
-            width: 55,
+            width: 45,
           ),
           Container(
             child: Directionality(

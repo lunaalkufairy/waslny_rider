@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:waslny_rider/constants.dart';
 
 class CustomTextfield extends StatelessWidget {
-  final String? hintText;
+  final String hintText;
   final String? errorText;
-  final String? textFieldName;
+  final String textFieldName;
+  final TextEditingController? controller;
+  final bool? enabled;
   const CustomTextfield(
       {super.key,
       required this.hintText,
       this.errorText,
-      required this.textFieldName});
+      required this.textFieldName,
+      this.enabled,
+      this.controller});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,6 +34,8 @@ class CustomTextfield extends StatelessWidget {
         SizedBox(
           width: 345,
           child: TextField(
+            enabled: enabled == null ? true : enabled,
+            controller: controller,
             onChanged: (value) {},
             cursorColor: white,
             keyboardType: TextInputType.name,

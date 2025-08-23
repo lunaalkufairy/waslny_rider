@@ -42,3 +42,5 @@ const Color lightWhite1 = Color(
     0xFFE1E1E1); //Phone number text field input and ordinary text in DARK MODE, trip info card, location trip, map places, copon, download button in LIGHT MODE
 const Color grey2 = Color(0xFF9F9F9F);
 const Color white1 = Color(0xFFF8FAFC);
+
+const String baseUrl = 'https://waslny-project.vercel.app/api';
