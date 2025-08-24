@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:waslny_rider/constants.dart';
 import 'package:waslny_rider/controllers/otp_page_controller.dart';
+import 'package:waslny_rider/screens/home_screen.dart';
+import 'package:waslny_rider/screens/login_screen.dart';
 
 class GetUserInfoScreenController extends GetxController {
   OtpPageController get controller => Get.find<OtpPageController>();
@@ -52,8 +54,8 @@ class GetUserInfoScreenController extends GetxController {
         snackStyle: SnackStyle.GROUNDED,
         backgroundColor: red,
         snackPosition: SnackPosition.TOP,
-        title: 'Error',
-        message: 'Nothing to update',
+        title: 'خطأ',
+        message: ' لا يوجد شيء ليتعدل ',
       ));
     } else if (firstNameUpdate == '' && lastNameUpdate != '') {
       Get.dialog(Center(
@@ -209,6 +211,45 @@ class GetUserInfoScreenController extends GetxController {
         print("Error: ${response.statusCode}");
         print('${data['message']}');
       }
+    }
+  }
+
+  Future<void> deleteAccount() async {
+    Get.dialog(Center(
+      child: CircularProgressIndicator(
+        color: blue,
+      ),
+    ));
+    final url = Uri.parse("$baseUrl/api/rider/profile/account");
+
+    final response = await http.delete(
+      url,
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${controller.accessToken}", // التوكن هون
+      },
+    );
+    if (Get.isDialogOpen ?? false) {
+      Get.back();
+    }
+    if (response.statusCode == 200) {
+      print("Deleted successfully ");
+      print("Response: ${response.body}");
+      Get.showSnackbar(GetSnackBar(
+        animationDuration: Duration(seconds: 1),
+        duration: Duration(seconds: 2),
+        snackStyle: SnackStyle.GROUNDED,
+        backgroundColor: blue,
+        snackPosition: SnackPosition.TOP,
+        title: 'تمت العملية بنجاح',
+        message: 'تم حذف الحساب بنجاح',
+      ));
+
+      Get.offAll(LoginScreen());
+      Get.delete<GetUserInfoScreenController>();
+    } else {
+      print("Failed - Status: ${response.statusCode}");
+      print("Error: ${response.body}");
     }
   }
 }

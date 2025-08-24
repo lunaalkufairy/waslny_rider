@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/instance_manager.dart';
 import 'package:waslny_rider/components/custom_Button.dart';
@@ -12,7 +13,8 @@ class ViewIformationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GetUserInfoScreenController controller = Get.find();
+    GetUserInfoScreenController controller =
+        Get.put(GetUserInfoScreenController());
     TextEditingController firstNameController = TextEditingController();
     TextEditingController secondNameController = TextEditingController();
 

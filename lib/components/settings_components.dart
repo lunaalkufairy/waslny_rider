@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/get_user_information_screen_controller.dart';
 import 'package:waslny_rider/screens/shorot_ahkam_screen.dart';
 
 class SettingsComponents extends StatelessWidget {
@@ -10,6 +11,8 @@ class SettingsComponents extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GetUserInfoScreenController controller =
+        Get.put(GetUserInfoScreenController());
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -37,7 +40,9 @@ class SettingsComponents extends StatelessWidget {
               if (index == 2) {
                 // Get.to();
               }
-              if (index == 3) {}
+              if (index == 3) {
+                controller.deleteAccount();
+              }
             },
             child: Container(
               margin: index == 1

@@ -5,6 +5,7 @@ import 'package:waslny_rider/components/payment_way.dart';
 import 'package:waslny_rider/components/select_price_trip_type.dart';
 import 'package:waslny_rider/constants.dart';
 import 'package:waslny_rider/controllers/add_trip_controller.dart';
+import 'package:waslny_rider/screens/trip_map_screen.dart';
 
 class PaymentWayButtomSheet extends StatelessWidget {
   const PaymentWayButtomSheet({super.key});
@@ -50,7 +51,11 @@ class PaymentWayButtomSheet extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          CustomButton(onTap: () {}, text: 'طلب الرحلة')
+          CustomButton(
+              onTap: () {
+                Get.to(TripMapScreen());
+              },
+              text: 'طلب الرحلة')
         ],
       ),
     );

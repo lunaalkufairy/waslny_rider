@@ -33,6 +33,7 @@ class MultieTripLocationCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
                           index == 0
@@ -53,7 +54,7 @@ class MultieTripLocationCard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      width: 50,
+                      width: 20,
                     ),
                     index == 0
                         ? LocationGreyCircle()

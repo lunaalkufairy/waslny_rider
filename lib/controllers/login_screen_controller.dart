@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:waslny_rider/constants.dart';
-import 'package:waslny_rider/controllers/otp_page_controller.dart';
 import 'package:waslny_rider/screens/otp_screen.dart';
 
 class LoginScreenController extends GetxController {

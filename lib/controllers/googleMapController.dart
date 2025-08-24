@@ -8,11 +8,26 @@ class Googlemapcontroller extends GetxController {
   Rxn<LatLng> currentLocation = Rxn<LatLng>();
   BitmapDescriptor customIcon = BitmapDescriptor.defaultMarker;
 
+  // ماركر واحد بس
+  final RxSet<Marker> markers = <Marker>{}.obs;
+
   void customMarker() {
-    BitmapDescriptor.asset(ImageConfiguration(size: Size(100, 100)),
-            "assets/icons/CurrentLocationMarker.png")
-        .then((icon) {
+    BitmapDescriptor.asset(
+      ImageConfiguration(size: const Size(100, 100)),
+      "assets/icons/CurrentLocationMarker.png",
+    ).then((icon) {
       customIcon = icon;
+
+      // أنشئ الماركر مرّة وحدة
+      if (currentLocation.value != null) {
+        markers.add(
+          Marker(
+            markerId: const MarkerId("currentLocation"),
+            position: currentLocation.value!,
+            icon: customIcon,
+          ),
+        );
+      }
       update();
     });
   }
@@ -132,10 +147,10 @@ class Googlemapcontroller extends GetxController {
   void onInit() {
     super.onInit();
     customMarker();
-    getCurrentLocation();
+    trackLocation();
   }
 
-  Future<void> getCurrentLocation() async {
+  Future<void> trackLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) return;
 
@@ -146,9 +161,36 @@ class Googlemapcontroller extends GetxController {
           permission == LocationPermission.denied) return;
     }
 
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    currentLocation.value = LatLng(position.latitude, position.longitude);
+    Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 5,
+      ),
+    ).listen((Position position) {
+      final newLocation = LatLng(position.latitude, position.longitude);
+      currentLocation.value = newLocation;
+
+      // عدّل موقع الماركر بدل ما تعمله جديد
+      markers.value = {
+        Marker(
+          markerId: const MarkerId("currentLocation"),
+          position: newLocation,
+          icon: customIcon,
+        ),
+      };
+
+      // حرّك الكاميرا مع الموقع
+      mapController?.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: newLocation,
+            zoom: 17,
+            tilt: 45,
+            bearing: 0,
+          ),
+        ),
+      );
+    });
   }
 
   void onMapCreated(GoogleMapController controller) {

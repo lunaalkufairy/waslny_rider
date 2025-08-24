@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/screens/money_codes_screen.dart';
 
 class MoneyCard extends StatelessWidget {
-  final int balance;
+  final String balance;
 
   const MoneyCard({
     Key? key,
@@ -30,6 +32,9 @@ class MoneyCard extends StatelessWidget {
             bottom: 0,
             left: 0,
             child: GestureDetector(
+              onTap: () {
+                Get.off(MoneyCodesScreen());
+              },
               child: Icon(
                 Icons.add,
                 size: 40,
@@ -73,7 +78,7 @@ class MoneyCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  balance > 100
+                  int.parse(balance) > 100
                       ? "😉 ايييييييه تتهنى "
                       : "💸 ! محفظتك فارغة ساعدها تتنفس فلوس ",
                   style: TextStyle(
