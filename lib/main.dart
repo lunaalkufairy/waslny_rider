@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:waslny_rider/controllers/baindings.dart';
-import 'package:waslny_rider/screens/choose_location_map.dart';
 import 'package:waslny_rider/screens/home_screen.dart';
 import 'package:waslny_rider/screens/login_screen.dart';
+import 'package:waslny_rider/test/map.dart';
 
 void main() {
   runApp(const WaslnyRider());
@@ -16,9 +17,21 @@ class WaslnyRider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: Baindings(),
-      debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
-    );
+        initialBinding: Baindings(),
+        debugShowCheckedModeBanner: false,
+        home: LoginScreen()
+        // RouteMapWidget(
+        //   points: [
+        //     LatLng(33.5138, 36.2765), // دمشق
+        //     LatLng(33.5200, 36.2900),
+        //     LatLng(33.5250, 36.2800), // نقطة ثالثة
+        //   ],
+        //   markerIconPaths: [
+        //     "assets/icons/ic_dest.png",
+        //     "assets/icons/ic_dest.png",
+        //     "assets/icons/CurrentLocationMarker.png",
+        //   ],
+        // ),
+        );
   }
 }

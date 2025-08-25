@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:waslny_rider/controllers/add_trip_controller.dart';
+import 'package:waslny_rider/controllers/choose_map_location_controller.dart';
 import 'package:waslny_rider/controllers/login_screen_controller.dart';
 import 'package:waslny_rider/controllers/otp_page_controller.dart';
 import 'package:waslny_rider/screens/login_screen.dart';

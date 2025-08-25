@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:waslny_rider/components/custom_arrow.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/choose_map_location_controller.dart';
 
 class ChooseLocationText extends StatelessWidget {
-  const ChooseLocationText({super.key});
+  String location;
+  ChooseLocationText({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class ChooseLocationText extends StatelessWidget {
             width: 280,
             height: 50,
             child: TextField(
+              maxLines: 2,
               enabled: false,
               onChanged: (value) {},
               keyboardType: TextInputType.streetAddress,
@@ -34,11 +38,11 @@ class ChooseLocationText extends StatelessWidget {
                   contentPadding: EdgeInsets.all(0),
                   filled: true,
                   fillColor: black,
-                  hintText: "اختار الموقع",
+                  hintText: location == '---' ? "اختر الموقع" : location,
                   hintStyle: TextStyle(
                     color: white,
                     fontFamily: 'cairo',
-                    fontSize: 14,
+                    fontSize: 12,
                   ),
                   disabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: black1),
@@ -56,6 +60,7 @@ class ChooseLocationText extends StatelessWidget {
           ),
           CustomArrow(
             onPressed: () {
+              Get.delete<ChooseMapLocationController>();
               Get.back();
             },
             backgroundColor: white,

@@ -53,16 +53,16 @@ class HomeScreen extends StatelessWidget {
               },
             ),
           ),
-          Align(
-            alignment: Alignment(0.85, 0.80),
-            child: CustomizeTripButton(
-              onTap: () {
-                Get.bottomSheet(CustomaizTripButtomSheet()
-                    // enterBottomSheetDuration: Duration(milliseconds: 100),
-                    );
-              },
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment(0.85, 0.80),
+          //   child: CustomizeTripButton(
+          //     onTap: () {
+          //       Get.bottomSheet(CustomaizTripButtomSheet()
+          //           // enterBottomSheetDuration: Duration(milliseconds: 100),
+          //           );
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );

@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:waslny_rider/components/choose_location_text.dart';
 import 'package:waslny_rider/components/custom_Button.dart';
 import 'package:waslny_rider/components/googleMap.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/choose_map.dart';
+import 'package:waslny_rider/controllers/choose_map_location_controller.dart';
 
 class ChooseLocationOnMapScreen extends StatelessWidget {
   const ChooseLocationOnMapScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    ChooseMapLocationController controller =
+        Get.put(ChooseMapLocationController());
     return Scaffold(
       backgroundColor: black1,
       body: Stack(
         children: [
-          MapComponent(isZoomAble: true, ismoveAble: true),
+          ChooseMap(),
+          GetBuilder<ChooseMapLocationController>(
+            builder: (controller) {
+              if (controller.isLoading)
+                return const Center(
+                  child: CircularProgressIndicator(color: blue),
+                );
+              return Center();
+            },
+          ),
           Padding(
             padding: const EdgeInsets.only(bottom: 18.0),
             child: Align(
@@ -22,9 +36,15 @@ class ChooseLocationOnMapScreen extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: Alignment(0, -0.85),
-            child: ChooseLocationText(),
-          )
+              alignment: Alignment(0, -0.85),
+              child: GetBuilder<ChooseMapLocationController>(
+                builder: (controller) {
+                  return ChooseLocationText(
+                    location:
+                        "${controller.state}-${controller.city}-${controller.suburb}-${controller.street}",
+                  );
+                },
+              ))
         ],
       ),
     );

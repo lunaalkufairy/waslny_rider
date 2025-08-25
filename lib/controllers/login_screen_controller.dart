@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -172,5 +173,30 @@ class LoginScreenController extends GetxController {
       ),
       barrierDismissible: true,
     );
+  }
+
+  Future<String> getAddressFromLatLng(double lat, double lng) async {
+    try {
+      final url = Uri.parse(
+          "https://nominatim.openstreetmap.org/reverse?lat=$lat&lon=$lng&format=json&accept-language=ar");
+
+      final response = await http.get(url, headers: {
+        "User-Agent": "waslny_rider_app/1.0" // ضروري لـ Nominatim
+      });
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return data["display_name"] ?? "عنوان غير متاح";
+      } else {
+        return "فشل في جلب العنوان (رمز: ${response.statusCode})";
+      }
+    } catch (e) {
+      return "خطأ: $e";
+    }
+  }
+
+  void testAddress() async {
+    String address = await getAddressFromLatLng(33.5138, 36.2765);
+    print("العنوان: $address");
   }
 }

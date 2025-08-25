@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waslny_rider/constants.dart';
 
 class DiscountCard extends StatelessWidget {
-  final int discountValue;
+  final String discountValue;
   final String validUntil;
 
   const DiscountCard({
