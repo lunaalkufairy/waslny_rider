@@ -175,13 +175,13 @@ class ChooseMapLocationController extends GetxController {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    latitude = position.latitude;
-    longitude = position.longitude;
+    // latitude = position.latitude;
+    // longitude = position.longitude;
 
     mapController.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-          target: LatLng(latitude, longitude),
+          target: LatLng(position.latitude, position.longitude),
           zoom: 15, // الزوم المطلوب
         ),
       ),

@@ -5,8 +5,20 @@ import 'package:waslny_rider/components/page_top.dart';
 import 'package:waslny_rider/constants.dart';
 import 'package:waslny_rider/controllers/get_user_information_screen_controller.dart';
 
-class WalletScreen extends StatelessWidget {
+class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
+
+  @override
+  State<WalletScreen> createState() => _WalletScreenState();
+}
+
+class _WalletScreenState extends State<WalletScreen> {
+  @override
+  void initState() {
+    GetUserInfoScreenController controller = Get.find();
+    controller.getUserInfo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +33,20 @@ class WalletScreen extends StatelessWidget {
           ),
           GetBuilder<GetUserInfoScreenController>(
             builder: (controller) {
-              controller.getUserInfo();
-              return MoneyCard(balance: controller.moneyBalance!);
+              return controller.isLoading == true
+                  ? Column(
+                      children: [
+                        SizedBox(
+                          height: 300,
+                        ),
+                        Center(
+                          child: CircularProgressIndicator(
+                            color: blue,
+                          ),
+                        ),
+                      ],
+                    )
+                  : MoneyCard(balance: controller.moneyBalance!);
             },
           )
         ],

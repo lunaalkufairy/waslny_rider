@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:waslny_rider/constants.dart';
 
 class MyLocationInfoCard extends StatelessWidget {
   final String regionName;
   final String fullLocation;
-  const MyLocationInfoCard({
-    super.key,
-    required this.regionName,
-    required this.fullLocation,
-  });
+  final VoidCallback ontap;
+  const MyLocationInfoCard(
+      {super.key,
+      required this.regionName,
+      required this.fullLocation,
+      required this.ontap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,29 +27,33 @@ class MyLocationInfoCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: ontap,
             icon: Icon(
               Icons.cancel_outlined,
               color: white,
             ),
           ),
           SizedBox(
-            width: 70,
+            width: 20,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                regionName,
-                style:
-                    TextStyle(color: white, fontSize: 18, fontFamily: 'cairo'),
-              ),
-              Text(
-                fullLocation,
-                style:
-                    TextStyle(color: white, fontSize: 15, fontFamily: 'cairo'),
-              ),
-            ],
+          Container(
+            width: 150,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  regionName,
+                  style: TextStyle(
+                      color: white, fontSize: 16, fontFamily: 'cairo'),
+                ),
+                Text(
+                  fullLocation,
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      color: white, fontSize: 11, fontFamily: 'cairo'),
+                ),
+              ],
+            ),
           ),
           SizedBox(
             width: 20,

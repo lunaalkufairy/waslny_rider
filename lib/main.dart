@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:waslny_rider/controllers/baindings.dart';
-import 'package:waslny_rider/screens/home_screen.dart';
 import 'package:waslny_rider/screens/login_screen.dart';
-import 'package:waslny_rider/test/map.dart';
 
 void main() {
   runApp(const WaslnyRider());

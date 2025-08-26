@@ -56,8 +56,8 @@ class LoginScreenController extends GetxController {
         snackStyle: SnackStyle.GROUNDED,
         backgroundColor: red,
         snackPosition: SnackPosition.TOP,
-        title: 'Error',
-        message: 'Enter A valid Number',
+        title: 'خطأ',
+        message: 'الرجاء ادخال رقم صحيح',
       ));
     }
   }

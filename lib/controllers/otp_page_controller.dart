@@ -11,7 +11,7 @@ import 'package:waslny_rider/screens/home_screen.dart';
 
 class OtpPageController extends GetxController {
   GetUserInfoScreenController userInfoScreenController =
-      Get.put(GetUserInfoScreenController());
+      Get.put(GetUserInfoScreenController(), permanent: true);
   LoginScreenController controller = Get.find();
 
   int? statusResponse;

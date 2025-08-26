@@ -9,6 +9,7 @@ import 'package:waslny_rider/components/trip_order_information_buttom_sheet.dart
 import 'package:waslny_rider/constants.dart';
 import 'package:waslny_rider/controllers/home_screen_controller.dart';
 import 'package:waslny_rider/screens/wallet_screen.dart';
+import 'package:waslny_rider/test/map.dart';
 
 class TripMapScreen extends StatelessWidget {
   const TripMapScreen({super.key});
@@ -25,7 +26,7 @@ class TripMapScreen extends StatelessWidget {
       backgroundColor: black,
       body: Stack(
         children: [
-          MapComponent(isZoomAble: false, ismoveAble: false),
+          RouteMapWidget(points: [], markerIconPaths: []),
           Align(
             alignment: Alignment.bottomCenter,
             child: DraggableScrollableSheet(

@@ -17,8 +17,11 @@ class GetUserInfoScreenController extends GetxController {
   String? moneyBalance;
   String? firstNameUpdate;
   String? lastNameUpdate;
+  bool? isLoading = false;
 
   Future<void> getUserInfo() async {
+    isLoading = true;
+    update();
     final url = Uri.parse("$baseUrl/api/rider/profile");
 
     final response = await http.get(
@@ -30,6 +33,9 @@ class GetUserInfoScreenController extends GetxController {
     );
 
     if (response.statusCode == 200 || response.statusCode == 201) {
+      isLoading = false;
+      update();
+      print('DONEEEEEEEEEEE');
       var data = json.decode(response.body);
       message = data["message"];
       firstName = data['data']["first_name"];
@@ -43,6 +49,8 @@ class GetUserInfoScreenController extends GetxController {
       print("Error: ${response.statusCode} - ${response.body}");
       update();
     }
+    isLoading = false;
+    update();
   }
 
   Future<void> ubdateUserInfo() async {
