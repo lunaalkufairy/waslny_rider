@@ -41,7 +41,7 @@ class CustomTimePicker extends StatelessWidget {
             children: [
               Obx(
                 () => Text(
-                  controller.time.format(context),
+                  controller.getTime.format(context),
                   textAlign: TextAlign.right,
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
@@ -95,7 +95,7 @@ class CustomTimePicker extends StatelessWidget {
                       const SizedBox(height: 20),
                       Obx(
                         () => Text(
-                          controller.time.format(context),
+                          controller.getTime.format(context),
                           style: TextStyle(
                               fontSize: 20, color: grey2, fontFamily: 'Cairo'),
                         ),
@@ -139,6 +139,8 @@ class CustomTimePicker extends StatelessWidget {
                               if (controller.isSelectingHour.value) {
                                 controller.isSelectingHour.value = false;
                               } else {
+                                controller.commitSelection();
+                                print(controller.selectedHour);
                                 Get.back();
                               }
                             },

@@ -4,13 +4,16 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/controllers/date_picker_controller.dart';
 import 'package:waslny_rider/controllers/time_picker_controller.dart';
 
 int? selectedHourValue;
+final timeController = Get.find<TimePickerController>();
+final dateController = Get.find<DatePickerController>();
+var dateTime = DateTime.now();
 
 class ClockView extends StatelessWidget {
   ClockView({super.key});
-  final controller = Get.find<TimePickerController>();
 
   int selectedHour = DateTime.now().hour;
   @override
@@ -22,15 +25,15 @@ class ClockView extends StatelessWidget {
         onTapUp: (details) {
           RenderBox box = context.findRenderObject() as RenderBox;
           Offset local = box.globalToLocal(details.globalPosition);
-          _handleTap(local, controller);
+          _handleTap(local, timeController);
         },
         child: Obx(() {
           return CustomPaint(
             painter: ClockPainter(
-              isSelectingHour: controller.isSelectingHour.value,
-              selectedValue: controller.isSelectingHour.value
-                  ? controller.selectedHour.value
-                  : controller.selectedMinute.value,
+              isSelectingHour: timeController.isSelectingHour.value,
+              selectedValue: timeController.isSelectingHour.value
+                  ? timeController.tempHour.value
+                  : timeController.tempMinute.value,
             ),
           );
         }),
@@ -49,22 +52,45 @@ class ClockView extends StatelessWidget {
     tapped = tapped == 0 ? 12 : tapped;
 
     if (controller.isSelectingHour.value) {
-      int tappedHour = ((degrees / 30).round()) % 12;
-      tappedHour = tappedHour == 0 ? 12 : tappedHour;
-      controller.selectHour(tappedHour);
+      int tappedHour12 = ((degrees / 30).round()) % 12;
+      tappedHour12 = tappedHour12 == 0 ? 12 : tappedHour12;
+      int tappedHour24;
+      if (dateTime.hour < 12) {
+        tappedHour24 = tappedHour12 % 12; // صباحي
+      } else {
+        tappedHour24 = tappedHour12 % 12 + 12; // مسائي
+      }
+
+      if (dateController.getSelectedDay.year == dateTime.year &&
+          dateController.getSelectedDay.month == dateTime.month &&
+          dateController.getSelectedDay.day == dateTime.day) {
+        if (tappedHour24 < dateTime.hour) {
+          return;
+        }
+        ; // لا تسمح باختيار ساعات سابقة
+      }
+      controller.selectHourTemp(tappedHour24);
     } else {
       int tappedMinute = ((degrees / 6).round()) % 60;
-      controller.selectMinute(tappedMinute);
-    }
 
-    //print('houuuuuuuur + $selectedHourValue');
+      // لا تسمح بالضغط على دقائق سابقة في نفس الساعة
+      if (dateController.getSelectedDay.year == dateTime.year &&
+          dateController.getSelectedDay.month == dateTime.month &&
+          dateController.getSelectedDay.day == dateTime.day &&
+          timeController.tempHour == timeController.selectedHour) {
+        if (tappedMinute < dateTime.minute) {
+          return;
+        }
+      }
+      controller.selectMinuteTemp(tappedMinute);
+    }
   }
 }
 
 class ClockPainter extends CustomPainter {
   final int selectedValue;
   final bool isSelectingHour;
-  var dateTime = DateTime.now();
+
   ClockPainter({required this.selectedValue, required this.isSelectingHour});
 
   // 60 sec - 360 deg  , 1 sec - 6 deg
@@ -97,6 +123,22 @@ class ClockPainter extends CustomPainter {
     canvas.drawCircle(Offset(hourHandX, hourHandY), 18, centerFillBrush);
     //Numbers :
     for (int i = 1; i <= divisions; i++) {
+      // final value = isSelectingHour ? i : (i * 5 % 60);
+      // bool isPast = false;
+      // if (isSelectingHour) {
+      //   int hour24;
+      //   if (dateTime.hour < 12) {
+      //     hour24 = i % 12; // صباح
+      //   } else {
+      //     hour24 = i % 12 + 12; // مساء
+      //   }
+      //   if (hour24 < dateTime.hour) isPast = true;
+      // } else {
+      //   if (controller.selectedHour.value == dateTime.hour &&
+      //       value < dateTime.minute) {
+      //     isPast = true;
+      //   }
+      // }
       final angle = (i * 30 - 90) * pi / 180; // نخصم 90 درجة لنبدأ من الأعلى
       final radiusOffset = 40; // حتى يكون الرقم داخل الساعة شوي
       final x = centerX + (radius - radiusOffset) * cos(angle);
