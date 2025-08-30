@@ -5,6 +5,7 @@ import 'package:waslny_rider/components/googleMap.dart';
 import 'package:waslny_rider/components/multie_Trip_location_card.dart';
 import 'package:waslny_rider/components/trip_order_information_buttom_sheet.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/screens/driver_trip_info.dart';
 
 class OrderInformationScreen extends StatelessWidget {
   const OrderInformationScreen({super.key});
