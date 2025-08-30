@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/route_manager.dart';
 import 'package:waslny_rider/components/multie_Trip_location_card.dart';
 import 'package:waslny_rider/constants.dart';
+import 'package:waslny_rider/screens/cacle_trip_screen.dart';
 
 class SerchingForATripButtomSheet extends StatelessWidget {
   const SerchingForATripButtomSheet({super.key});
@@ -54,7 +56,9 @@ class SerchingForATripButtomSheet extends StatelessWidget {
             height: 25,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Get.to(CacleTripScreen());
+            },
             child: Container(
               width: 280,
               height: 65,

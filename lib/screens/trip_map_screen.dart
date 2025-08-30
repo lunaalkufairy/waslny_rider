@@ -16,7 +16,7 @@ class TripMapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeScreenController controller = Get.put(HomeScreenController());
+    HomeScreenController controller = Get.find();
 
     return Scaffold(
       key: controller.scaffoldKey,
@@ -31,7 +31,7 @@ class TripMapScreen extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: DraggableScrollableSheet(
               maxChildSize: 0.65,
-              minChildSize: 0.14,
+              minChildSize: 0.65,
               initialChildSize: 0.65,
               builder: (context, scrollController) {
                 return Container(
