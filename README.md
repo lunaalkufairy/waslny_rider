@@ -1,4 +1,4 @@
-# 🚗 Waslny Rider - Flutter Ride-Hailing App
+# 🚗 Waslny Rider - Flutter Order Taxi App
 
 A Flutter ride-hailing application with custom UI components, real-time location tracking, and trip management features.
 
