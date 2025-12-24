@@ -1,102 +1,86 @@
-# 🚗 Waslny-rider Application – Flutter
+# 🚗 Waslny Rider - Flutter Ride-Hailing App
 
-A feature-rich Flutter application focused on managing trips and service orders, built with a strong emphasis on custom UI components, map-based interactions, and clean project structure.
-
-This project demonstrates the ability to build scalable and interactive front-end applications using Flutter.
-
----
+A Flutter ride-hailing application with custom UI components, real-time location tracking, and trip management features.
 
 ## ✨ Features
 
-- 📍 Location selection and management using map integration
-- 🗺 Interactive trip map screen
-- 🧾 Create, view, and manage orders
-- 🕒 Custom date picker and circular time picker
-- 🎛 Custom bottom sheets and action buttons
-- 💰 Wallet screen and money codes system
-- 🎟 Coupons / promo codes support
-- 🔐 OTP verification screen
-- ⚙️ Settings and user preferences
-- 📦 Detailed order information screen
-- 🎨 Fully custom-designed UI (no default templates)
-
----
-
-## 🧩 Custom UI & Components
-
-This project relies heavily on **custom-built widgets** instead of ready-made Flutter components, including:
-
-- Custom buttons and reusable UI elements
-- Custom text fields with validation
-- Custom date & time picker components
-- Bottom sheets and modal views
-- Map-related UI controls
-
-All components are designed to be reusable and scalable.
-
----
+- **Authentication**: Phone number login with OTP verification
+- **Maps & Location**: Google Maps integration with location selection and saved addresses
+- **Trip Booking**: Create trips (immediate/scheduled) with multiple stops, vehicle selection, and custom options
+- **Order Management**: View trip history and track orders in real-time
+- **Wallet**: Digital wallet with money codes and payment methods
+- **Discounts**: Manage and apply discount cards
+- **Custom UI**: Fully custom-designed interface with dark/light mode support
+- **Multi-language**: Arabic and English support (RTL/LTR)
 
 ## 🛠 Tech Stack
 
-- Flutter
-- Dart
-- Custom Widgets Architecture
-- Map integration
-- Clean UI separation
+- **Flutter** ^3.6.1
+- **GetX** ^4.7.2 - State management & routing
+- **Google Maps** - Map integration and location services
+- **Pusher Channels** - Real-time updates
+- **HTTP** - API communication
 
----
+See `pubspec.yaml` for complete dependencies.
 
-## 🧠 Project Structure
+## 📁 Project Structure
 
+```
 lib/
-├── components/ # Reusable custom UI components
-├── screens/ # Application screens
-├── tools/ # Custom calendar & time picker views
-└── test/ # Testing and experimental views
-
----
-
-## 📸 Screenshots
-
-Check this figma link which shows the screens of the application.
-Figma link:
-https://www.figma.com/design/HWHTjJoTfET6pRxGaBBTmj/Untitled?node-id=0-1&t=stNezDouVz85vzVU-1
-
----
-
-## 🎥 App Demo
-
-Coming soon!
-
-<!-- <img src="screenshots/demo.gif" width="260" /> -->
-
----
+├── components/    # Custom UI components (46 files)
+├── screens/       # App screens (19 files)
+├── controllers/   # GetX controllers (17 files)
+├── models/        # Data models
+├── tools/         # Custom calendar & time picker
+├── constants.dart # App constants
+└── main.dart      # Entry point
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Flutter SDK installed
-- Emulator or physical device
-- Internet connection (if map services are enabled)
+- Flutter SDK 3.6.1+
+- Google Maps API key
+- Android Studio / VS Code
 
-### Run the App
+### Installation
 
-```bash
-flutter pub get
-flutter run
-```
+1. Clone the repository
 
----
+   ```bash
+   git clone <repository-url>
+   cd waslny_rider
+   ```
 
-## 📌 About This Project
+2. Install dependencies
 
-This application was developed as a practical Flutter project to strengthen skills in:
+   ```bash
+   flutter pub get
+   ```
 
-- Advanced UI development
-- Building reusable components
-- Structuring medium-to-large Flutter applications
-- Handling complex user flows (orders, trips, maps)
-- Creating production-ready front-end architecture
+3. Run the app
+   ```bash
+   flutter run
+   ```
 
-The project focuses on front-end logic and UI behavior, making it suitable as a portfolio project.
+## 📸 Design
+
+View the complete UI design: [Figma Link](https://www.figma.com/design/HWHTjJoTfET6pRxGaBBTmj/Waslny?node-id=0-1&p=f&t=edB9geqJBebuFSyy-0)
+
+## 🏗️ Architecture
+
+- **State Management**: GetX (reactive state, dependency injection, routing)
+- **Architecture**: MVC-like pattern (Controllers, Screens, Models)
+- **UI**: All components are custom-built (no default templates)
+
+## 📝 About
+
+This project demonstrates advanced Flutter development with:
+
+- Custom widget architecture
+- Real-time features with Pusher
+- Google Maps integration
+- Production-ready code structure
+
+**Built with ❤️ using Flutter**
